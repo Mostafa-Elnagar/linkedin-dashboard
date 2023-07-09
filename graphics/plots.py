@@ -41,9 +41,9 @@ def update_line(start_date, end_date):
     Input("date-picker-end", "value")
 )
 def update_bar(start_date, end_date):
-    most_6_companies = repo.get_most_companies(start_date, end_date)
+    most_companies = repo.get_most_companies(start_date, end_date, limit=10)
     fig = px.bar(
-        most_6_companies,
+        most_companies,
         template=templates["simple_white"],
         orientation='h',
         title="",

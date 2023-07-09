@@ -43,7 +43,7 @@ class DataRepo:
 
         # clean invitations dataframe
         self.df_inv["DATE"] = pd.to_datetime(self.df_inv["Sent At"], format="%m/%d/%y, %I:%M %p")
-        self.df_inv.drop(["Message", "Sent At"], axis=1, inplace=True)
+        self.df_inv.drop(["Sent At"], axis=1, inplace=True)
 
         # clean messages
         self.df_msg["DATE"] = pd.to_datetime(self.df_msg["DATE"], utc=True).dt.tz_localize(None)
