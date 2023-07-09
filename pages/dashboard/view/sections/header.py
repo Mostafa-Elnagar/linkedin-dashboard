@@ -145,7 +145,7 @@ header_layout = (
                                             ),  # Text
                                             dmc.DatePicker(
                                                 id="date-picker-start",
-                                                value=pd.to_datetime("2023-01-01", format="%Y-%m-%d"),
+                                                value=pd.to_datetime("2022-01-01", format="%Y-%m-%d"),
                                                 size="lg"
                                             ),  # DatePicker
                                         ]

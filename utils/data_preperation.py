@@ -83,8 +83,10 @@ class DataRepo:
         return most_common
     
     def get_connections_by_month(self, start_date, end_date):
-        cnt_by_month = get_data_between(self.df_cnt, start_date, end_date)["month"].value_counts()
-        return cnt_by_month
+        df = get_data_between(self.df_cnt, start_date, end_date).set_index("DATE")
+        df['connection'] = 1
+        count_by_month = df.resample("M")["connection"].count()
+        return count_by_month
     
     def get_wordcloud_data(self, start_date, end_date):
         position_series = get_data_between(self.df_cnt, start_date, end_date)["Position"].dropna().astype(str)

@@ -19,11 +19,11 @@ def get_data_between(df, start_date, end_date):
     Input("date-picker-end", "value")
 )
 def update_line(start_date, end_date):
-    cnt_by_month = repo.get_connections_by_month(start_date, end_date)
+    count_by_month = repo.get_connections_by_month(start_date, end_date)
     fig = px.line(
-        cnt_by_month,
+        count_by_month,
         template=templates["simple_white"],
-        title="Total Connections by Month Name"
+        title=""
     )
     fig.update_traces(mode="lines+markers",line={'color':'blue'})
     fig.update_layout(
