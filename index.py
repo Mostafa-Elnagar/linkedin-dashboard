@@ -10,7 +10,6 @@ from graphics.plots import *
 from graphics.trakcers import *
 from app import app
 
-from environment.settings import APP_HOST, APP_PORT, APP_DEBUG
 
 server = app.server
 
@@ -34,4 +33,9 @@ def display_page(pathname):
     return page_not_found()
 
 if __name__ == '__main__':
-    app.run_server(debug=APP_DEBUG, host=APP_HOST, port=APP_PORT)
+    try:
+        from environment.settings import APP_HOST, APP_PORT, APP_DEBUG
+        app.run_server(debug=APP_DEBUG, host=APP_HOST, port=APP_PORT)
+    except:
+        pass
+    
