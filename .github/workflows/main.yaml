@@ -27,8 +27,8 @@ jobs:
         run: |
           docker build \
             --cache-from ${{ env.IMAGE }}:latest \
-            --t ${{ env.IMAGE }}:latest \
-            --f ./project/Dockerfile \
+            -t ${{ env.IMAGE }}:latest \
+            -f ./project/Dockerfile \
             "./project"
       - name: Push image
         run: |
