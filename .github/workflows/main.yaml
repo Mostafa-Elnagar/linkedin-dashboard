@@ -28,8 +28,8 @@ jobs:
           docker build \
             --cache-from ghcr.io/$(echo $GITHUB_REPOSITORY | tr '[A-Z]' '[a-z]')/app:latest \
             -t ghcr.io/$(echo $GITHUB_REPOSITORY | tr '[A-Z]' '[a-z]')/app:latest \
-            -f ./project/Dockerfile \
-            "./project"
+            -f ./Dockerfile \
+            .
       - name: Push image
         run: |
           docker push ${{ env.IMAGE }}:latest
