@@ -26,8 +26,8 @@ jobs:
       - name: Build Image
         run: |
           docker build \
-            --cache-from ${{ env.IMAGE }}:latest \
-            -t ${{ env.IMAGE }}:latest \
+            --cache-from ghcr.io/$(echo $GITHUB_REPOSITORY | tr '[A-Z]' '[a-z]')/app:latest \
+            -t ghcr.io/$(echo $GITHUB_REPOSITORY | tr '[A-Z]' '[a-z]')/app:latest \
             -f ./project/Dockerfile \
             "./project"
       - name: Push image
