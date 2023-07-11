@@ -90,7 +90,7 @@ viz_layout = (
                                 grow=True,
                                 children = [
                                     dmc.Title(
-                                        children="Connections Positions", 
+                                        children="Connection's Positions", 
                                         order=2, 
                                         style={
                                             'font-family':'IntegralCF-Regular',

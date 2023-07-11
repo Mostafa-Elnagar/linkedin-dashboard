@@ -86,7 +86,10 @@ def update_pie(start_date, end_date):
         title="",
         hole=0.5
     )
-    fig.update_layout(margin=dict(l=20, r=20, t=30, b=20))
+    fig.update_layout(
+        margin=dict(l=20, r=20, t=30, b=20),
+        legend={"x": 0.33, "y": 0.5, "bgcolor": "rgba(0, 0, 0, 0)"}
+    )
     fig.update_traces(marker_colors=['RoyalBlue','LightSalmon'])
     
     return fig
