@@ -99,12 +99,5 @@ Alternatively, you can use the provided `Dockerfile` to build and run the applic
 docker build -t linkedin-dashboard .
 docker run -p 8050:8050 linkedin-dashboard
 ```
----
-
-## 🧭 Final Thoughts
-
-This project isn’t just about data — it’s about insight. It’s about turning a static export from LinkedIn into something dynamic and personalized. Whether you’re tracking career growth, understanding industry trends in your network, or just exploring your connections from a new perspective — this dashboard puts you at the center of your own data story.
-
----
 
 
