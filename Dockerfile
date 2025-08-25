@@ -1,7 +1,5 @@
 FROM python:3.9.16-slim-buster
 
-LABEL maintainer="Mostafa Elnagar"
-
 # set working directory in container
 WORKDIR /usr/src/app
 
@@ -22,10 +20,10 @@ COPY data/ ./data
 COPY graphics/ ./graphics
 COPY pages/ ./pages
 COPY utils/ ./utils
+
 # Changing to non-root user
 RUN useradd -m appUser
 USER appUser
 
 # Run locally on port 8050
 CMD ["gunicorn", "--bind", "0.0.0.0:8050", "index:server"]
-

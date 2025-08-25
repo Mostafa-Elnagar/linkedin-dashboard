@@ -1,35 +1,29 @@
 name: Continuous Integration and Delivery
 
-on: 
+on:
   push:
     branches:
       - main
 
-env:
-  IMAGE: ghcr.io/$(echo $GITHUB_REPOSITORY | tr '[A-Z]' '[a-z]')/app
-
 jobs:
-
   build:
     name: Build Docker Image
     runs-on: ubuntu-latest
     steps:
       - name: Checkout main
-        uses: actions/checkout@v2.3.4
-      - name: Log in to Github Packages
-        run: echo ${GITHUB_TOKEN} | docker login -u ${GITHUB_ACTOR} --password-stdin ghcr.io
-        env:
-          GITHUB_TOKEN: ${{ secrets.CR_PAT }}
-      - name: Pull image
-        run: |
-          docker pull ${{ env.IMAGE }}:latest || true
+        uses: actions/checkout@v3
+
+      - name: Normalize repo name
+        run: echo "IMAGE=ghcr.io/${GITHUB_REPOSITORY,,}/app" >> $GITHUB_ENV
+
+      - name: Log in to GitHub Container Registry
+        run: echo "${{ secrets.CR_PAT }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+      - name: Pull image for cache
+        run: docker pull $IMAGE:latest || true
+
       - name: Build Image
-        run: |
-          docker build \
-            --cache-from ghcr.io/$(echo $GITHUB_REPOSITORY | tr '[A-Z]' '[a-z]')/app:latest \
-            -t ghcr.io/$(echo $GITHUB_REPOSITORY | tr '[A-Z]' '[a-z]')/app:latest \
-            -f ./Dockerfile \
-            .
+        run: docker build --cache-from $IMAGE:latest -t $IMAGE:latest -f ./Dockerfile .
+
       - name: Push image
-        run: |
-          docker push ${{ env.IMAGE }}:latest
+        run: docker push $IMAGE:latest
