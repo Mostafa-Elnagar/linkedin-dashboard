@@ -1,14 +1,12 @@
 #!/usr/bin/env groovy
 
-// Define global variables
 def appName = 'linkedin-dashboard'
 def dockerImage = "linkedin-dashboard:1.${BUILD_NUMBER}"
 def containerName = 'linkedin-dashboard-container'
 def appPort = '8050'
 def hostPort = '8050'
 
-// Pipeline execution
-node {
+node('agent-02') {
     try {
         stage('Checkout') {
             echo "Starting build for ${appName}"
