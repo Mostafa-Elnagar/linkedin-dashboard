@@ -99,5 +99,3 @@ Alternatively, you can use the provided `Dockerfile` to build and run the applic
 docker build -t linkedin-dashboard .
 docker run -p 8050:8050 linkedin-dashboard
 ```
-
-
